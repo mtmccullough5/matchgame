@@ -1,31 +1,44 @@
 // Jquery
 // General form $(selector).action
-var cardbtns = $('.card');
-var card = {
-    state: "inactive",
-    frontimg: "A",
-    backimg: "Card Back"
+var card = $('.card');
+for(i=0; i<card.length; i++){
+  card[i].name = "Card" + i;
+  card[i].state = "Inactive";
+  card[i].backImg = "Card Back";
+  card[i].frontImg = "Image" + i;
+  card[i].revealed = false; 
 }
-console.log(cardbtns)
-for(i=0; i<cardbtns.length; i++){
-    cardbtns[i].name = "Card" + i;
-    cardbtns[i].state = "Inactive";
-    cardbtns[i].backimg = "Card Back";
-    cardbtns[i].frontimg = "Image" + i; 
-    console.log(i);
-}
-console.log(cardbtns)
-    
+  
 
 console.log(card)
 
 $(document).ready(function(){
-    $('.card').on('click',function(){
-        console.log(this.frontimg)
+  var revealedCard = null;
+  $('.card').on('click',function(){
+    var cardChoice = this;
+    console.log(cardChoice);
+    cardChoice.revealed = true;
+    cardChoice.innerText = cardChoice.frontImg;
+    if (revealedCard === null){
+      revealedCard = cardChoice;
+      console.log(revealedCard);
+      return revealedCard;
+    } else if (revealedCard === cardChoice.frontImg){
+      console.log(revealedCard)
+      console.log("Second Card Choice")
+      return revealedCard = null;
+    } else { setTimeout(function(){
+      console.log("cardChoice")
+      console.log(cardChoice)
+      revealedCard.innerText = revealedCard.backImg;
+      cardChoice.innerText = cardChoice.backImg;
+      console.log(this.backImg)
+      return revealedCard = null
+    },2500)};
+    console.log(this.frontImg)
 
-    });
-    
   });
+});
    
  
   
