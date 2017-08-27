@@ -1,11 +1,19 @@
 // Jquery
 // General form $(selector).action
+var matchingImages = [
+  "Image1", "Image2", "Image3", "Image4", "Image5", "Image6", "Image7", "Image8",
+  "Image1", "Image2", "Image3", "Image4", "Image5", "Image6", "Image7", "Image8"
+]
 var card = $('.card');
 for(i=0; i<card.length; i++){
   card[i].name = "Card" + i;
   card[i].state = "Inactive";
   card[i].backImg = "Card Back";
-  card[i].frontImg = "Image" + i;
+  imgSplice = Math.floor((Math.random() * matchingImages.length-1) + 1);
+  console.log(matchingImages)
+  console.log(imgSplice)
+  card[i].frontImg = matchingImages[imgSplice];
+  matchingImages.splice(imgSplice,1)
   card[i].revealed = false; 
 }
   
@@ -32,6 +40,6 @@ $(document).ready(function(){
       revealedCard.disabled = false;
       cardChoice.disabled = false;
       return revealedCard = null
-    },2500)};
+    },2000)};
   });
 });
