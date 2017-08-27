@@ -9,37 +9,29 @@ for(i=0; i<card.length; i++){
   card[i].revealed = false; 
 }
   
-
-console.log(card)
-
 $(document).ready(function(){
   var revealedCard = null;
   $('.card').on('click',function(){
     var cardChoice = this;
-    console.log(cardChoice);
+    cardChoice.disabled = true;
     cardChoice.revealed = true;
     cardChoice.innerText = cardChoice.frontImg;
     if (revealedCard === null){
       revealedCard = cardChoice;
-      console.log(revealedCard);
+      console.log(cardChoice)
       return revealedCard;
-    } else if (revealedCard === cardChoice.frontImg){
+    } else if (revealedCard.frontImg === cardChoice.frontImg){
       console.log(revealedCard)
       console.log("Second Card Choice")
       return revealedCard = null;
-    } else { setTimeout(function(){
-      console.log("cardChoice")
+    } else { 
       console.log(cardChoice)
+      setTimeout(function(){
       revealedCard.innerText = revealedCard.backImg;
       cardChoice.innerText = cardChoice.backImg;
-      console.log(this.backImg)
+      revealedCard.disabled = false;
+      cardChoice.disabled = false;
       return revealedCard = null
     },2500)};
-    console.log(this.frontImg)
-
   });
 });
-   
- 
-  
-  console.log("ItWorks")
